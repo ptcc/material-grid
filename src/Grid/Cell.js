@@ -2,7 +2,7 @@ import React from 'react';
 //import './material-cell.css';
 
 const GenerateCellClassNames = (props) => {
-  const classes = "mdl-cell";
+  let classes = "mdl-cell";
   if(props.col){
     classes += " mdl-cell--"+props.col+"-col";
   }
@@ -52,8 +52,11 @@ const GenerateCellClassNames = (props) => {
 }
 
 const Cell = (props) => {
+ 
   return (
-    <div className={GenerateCellClassNames(props)}>{ props.children }</div>
+    <div className={GenerateCellClassNames(props)}>
+       { React.Children.map(props.children, child => React.cloneElement(child, Object.assign({},props)))}
+    </div>
   );
 };
 

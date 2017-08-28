@@ -14,7 +14,9 @@ const GenerateGridClassNames = (props) => {
 
 const Grid = (props) => {
   return (
-    <div className={GenerateGridClassNames(props)}>{ props.children }</div>
+    <div className={GenerateGridClassNames(props)}>
+      { React.Children.map(props.children, child => React.cloneElement(child, Object.assign({},props) ))}
+    </div>
   );
 };
 
